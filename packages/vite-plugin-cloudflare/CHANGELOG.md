@@ -1,5 +1,25 @@
 # @cloudflare/vite-plugin
 
+## 1.70.2
+
+### Patch Changes
+
+- [#17082](https://github.com/cloudflare/workers-sdk/pull/17082) [`ae2a49f`](https://github.com/cloudflare/workers-sdk/commit/ae2a49f60cf2981e10847736cc5337d0a92f4a31) Thanks [@petebacondarwin](https://github.com/petebacondarwin)! - Keep deferred imports alive after their originating request ends
+
+  Retain the module runner's RPC operation until its result is retrieved and cleaned up. This prevents subsequent requests from hanging on a cached import when the first request returns early or its client disconnects.
+
+- [#17012](https://github.com/cloudflare/workers-sdk/pull/17012) [`2f74598`](https://github.com/cloudflare/workers-sdk/commit/2f74598579fa424b87741f0bd265ee420211b624) Thanks [@petebacondarwin](https://github.com/petebacondarwin)! - Update the local runtime and default compatibility date to November 18
+
+  Update Miniflare to 5.20261118.0-beta for workerd 1.20261118.1 and align Workers types, Wrangler, and the shared compatibility-date helpers. Projects without an explicit compatibility date now use 2026-11-18.
+
+- [#17049](https://github.com/cloudflare/workers-sdk/pull/17049) [`8fb66eb`](https://github.com/cloudflare/workers-sdk/commit/8fb66eb875189c435746a98697c328605bc93250) Thanks [@petebacondarwin](https://github.com/petebacondarwin)! - Update the plugin build and bundle shared declaration dependencies
+
+  Use tsdown 0.22.14 for the plugin and retained remote bindings package, and keep shared SDK types bundled in the published plugin declarations. Validate the declarations from a consumer project without workspace development dependencies.
+
+- [#17083](https://github.com/cloudflare/workers-sdk/pull/17083) [`ce239be`](https://github.com/cloudflare/workers-sdk/commit/ce239be766dc44dac694037a60c35a07a6cc3120) Thanks [@petebacondarwin](https://github.com/petebacondarwin)! - Update Undici to 7.30.2 in the bundled remote bindings support
+
+  Consume the upstream security fixes in remote binding requests. The Miniflare and Wrangler runtime copies will update separately through their next published releases.
+
 ## 1.70.1
 
 ### Patch Changes
