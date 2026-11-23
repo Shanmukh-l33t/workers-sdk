@@ -255,6 +255,13 @@ export class ProxyServer implements DurableObject {
 
 			if (typeof result === "function") {
 				// Calling functions-which-return-functions not yet supported
+				// Resolving an `RpcProperty` above produces a temporary `RpcStub`
+				// for the method. The client looks the method up again for its
+				// `CALL`, so release this one now rather than leaving it for the GC
+				// (which logs a "stub was not disposed properly" warning).
+				if (result.constructor.name === "RpcStub") {
+					(result as unknown as Disposable)[Symbol.dispose]();
+				}
 				return new Response(null, {
 					status: 204,
 					headers: { [CoreHeaders.OP_RESULT_TYPE]: "Function" },

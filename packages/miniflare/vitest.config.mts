@@ -33,6 +33,13 @@ export default defineConfig({
 				import.meta.dirname,
 				"src/workers/shared/remote-bindings-utils.ts"
 			),
+			// Same reasoning as `@relay-under-test`: `test/plugins/core/proxy/server.spec.ts`
+			// exercises the worker-side proxy with its worker-typed source kept out of
+			// the node-side tsconfig.
+			"@proxy-server-under-test": path.resolve(
+				import.meta.dirname,
+				"src/workers/core/proxy.worker.ts"
+			),
 			"miniflare:shared": path.resolve(
 				import.meta.dirname,
 				"src/workers/shared/index.ts"
